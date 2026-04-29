@@ -4,7 +4,7 @@ Argumento nomeado tem nome com sinal de igual
 Argumento não nomeado recebe apenas o argumento (valor)
 """
 
-
+"""
 def soma(x, y, z):
     # Definição
     print(f'{x=} y={y} {z=}', '|', 'x + y + z = ', x + y + z)
@@ -14,7 +14,7 @@ soma(1, 2, 3)
 soma(1, y=2, z=5)
 
 print(1, 2, 3, sep='-')
-
+"""
 
 """
 Escopo de funções em Python
@@ -25,6 +25,8 @@ O escopo local é o escopo onde apenas nomes do mesmo local
 podem ser alcançados.
 """
 
+
+"""
 x = 1
 
 def escopo ():
@@ -41,3 +43,24 @@ def escopo ():
 print(x)
 escopo()
 print(x)
+
+"""
+
+
+"""
+Closure e funções que retornam outras funções
+"""
+
+
+def criar_saudacao(saudacao):
+    def saudar(nome):
+        return f'{saudacao}, {nome}!'
+    return saudar
+
+
+falar_bom_dia = criar_saudacao('Bom dia')
+falar_boa_noite = criar_saudacao('Boa noite')
+
+for nome in ['Maria', 'Joana', 'Luiz']:
+    print(falar_bom_dia(nome))
+    print(falar_boa_noite(nome))

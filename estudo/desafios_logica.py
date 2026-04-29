@@ -215,5 +215,125 @@ print(a, b)
 """
 
 
-nascimento = int(input('em que ano voce nasceu'))
+"""
+from datetime import datetime 
+
+ano_nascimento = int(input("digite o ano de nascimento:"))
+
+ano_atual = datetime.now().year
+
+anos = ano_atual - ano_nascimento
+
+total_dias = anos * 365
+
+anos_finais = total_dias // 365
+resto = total_dias % 365
+
+meses = resto // 30
+dias = resto % 30
+
+print(anos_finais, meses, dias)
+
+"""
+
+
+"""
+anos = 0
+francisco = 1.50
+sara = 1.10
+
+while sara < francisco:
+    anos += 1
+    sara += 0.03
+    francisco += 0.02
+
+print(francisco, sara, anos)
+
+"""
+    
+"""
+x = int(input())
+
+for multi in range(1,11):
+    resultado = x * multi
+    print(resultado)
+
+"""
+
+"""
+print('digite as seguintes informações:')
+
+valor_hora = float(input('valor da hora aula'))
+horas_dia = float(input('quantas horas por dia'))
+aulas_mes = int(input('numero de aulas no mes'))
+
+persentual_inss = 0.92
+
+salario = valor_hora * (horas_dia * aulas_mes) * persentual_inss
+
+print(salario)
+"""
+"""
+frase = 'eu sou gay porra'.upper()
+    
+i = 0
+apareceu_mais = 0
+letra_mais = ''
+
+while i < len(frase):
+    letra_atual = frase[i]
+    
+    if letra_atual == ' ':
+        i += 1
+        continue
+    
+    quanti_letra = frase.count(letra_atual)
+    
+    if apareceu_mais < quanti_letra:
+        apareceu_mais = quanti_letra
+        letra_mais = letra_atual
+    
+    i += 1
+    
+print(
+    'A letra que apareceu mais vezes foi '
+    f'"{letra_mais}" que apareceu '
+    f'{apareceu_mais}x'
+)
+
+
+textoo = input('digite seu texto')
+lista = []
+def primeiro_unico(texto):
+    for i in texto:
+        lista.append(i)
+        if i in lista:
+            print(i)
+            
+print(primeiro_unico(textoo))
+
+"""
+
+parar = ''
+print('digite seu calculo, digite "00", para calcular')
+while valores1 or valores2 != '=':
+    valores1 = int(input('primeiro valor'))
+    valores2 = int(input('segundo valor'))
+    print('qual operador vai ser utilizado?')
+    operadores = input()
+    
+    if operadores == '+':
+        resultado = valores1 + valores2
+    elif operadores == '-':
+        resultado = valores1 - valores2
+    elif operadores == '*':
+        resultado = valores1 * valores2
+    elif operadores == '/':
+        resultado = valores1 / valores2
+    
+        
+        
+
+    
+    
 
