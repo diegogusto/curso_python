@@ -25,3 +25,5 @@ lista[2] = 300
 del lista[2]
 print(lista)
 print(lista[2])
+
+

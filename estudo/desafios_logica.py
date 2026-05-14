@@ -314,6 +314,7 @@ print(primeiro_unico(textoo))
 
 """
 
+"""
 parar = ''
 print('digite seu calculo, digite "00", para calcular')
 while valores1 or valores2 != '=':
@@ -331,9 +332,51 @@ while valores1 or valores2 != '=':
     elif operadores == '/':
         resultado = valores1 / valores2
     
-        
-        
+"""
 
+
+"""
+alunos = []
+while True:
+    nome = input('digite seu nome: ')
+    if nome == 'sair':
+        break
     
+    nota = float(input('digite sua  nota:'))
     
+    aluno = {
+        'nome': nome,
+        'nota': nota
+    }
+    
+    alunos.append(aluno)
+    
+#mostrar resultado:
+    for aluno in alunos:
+        print(aluno['nome'], aluno['nota'])
+        
+"""
+
+
+
+"""
+usuario = 'diego'
+senha = 2707
+
+for tentativas in range(3):
+    print('digite usuario e senha abaixo:')
+    usuario_tentativa = input('usuario: ')
+    senha_tentativa = int(input('Senha: '))
+    
+    if usuario_tentativa == usuario:
+        if senha_tentativa == senha:
+            print('parabens voce acertou')      
+            break
+        else:
+            print('Voce digitou a senha errada!')
+    else:
+        print('voce digitou o usuario errado!')
+          
+"""
+
 
