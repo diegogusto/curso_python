@@ -380,3 +380,67 @@ for tentativas in range(3):
 """
 
 
+"""
+valores = []
+
+print('digite 10 numeros:')
+i = 0
+for i in range(10):
+    valor = int(input())
+    valores.append(valor)
+
+maior = 0
+for i in valores:
+    if i > maior:
+        maior = i
+
+menor = valores[0]  # Initialize with the first value
+for i in valores:
+    if i < menor:
+        menor = i
+
+soma = 0
+media = 0
+for i in valores:
+    soma += i
+    media = soma / 10
+
+print(f'o maior numero é {maior}')
+print(f'o menor numero é {menor}')
+print(f'a media é {media}')
+"""
+
+
+print('digite suas 5 notas:')
+
+notas = []
+for i in range(5):
+    nota = float(input())
+    notas.append(nota)
+
+soma = 0
+media = 0
+for i in notas:
+    soma += i
+    media = soma / len(notas)
+print(f'sua media é {media}')
+
+
+maior_nota = 0
+for i in notas:
+    if i > maior_nota:
+        maior_nota = i
+print(f'sua maior nota é {maior_nota}')
+
+
+menor_nota = 0
+for i in notas:
+    if i < menor_nota:
+        menor_nota = i
+
+
+aprovado = None
+if media >= 7:
+    aprovado = True
+
+print(f'voce foi aprovado? {aprovado}')
