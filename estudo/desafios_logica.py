@@ -410,7 +410,7 @@ print(f'o menor numero é {menor}')
 print(f'a media é {media}')
 """
 
-
+"""
 print('digite suas 5 notas:')
 
 notas = []
@@ -444,3 +444,7 @@ if media >= 7:
     aprovado = True
 
 print(f'voce foi aprovado? {aprovado}')
+"""
+
+
+
