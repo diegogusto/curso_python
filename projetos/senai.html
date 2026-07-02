@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAUMINAS SmartBuy - Protótipo Inteligente GP 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800">
+
+    <!-- BARRA DE NAVEGAÇÃO SUPERIOR -->
+    <header class="bg-blue-900 text-white p-4 shadow-md flex justify-between items-center">
+        <div>
+            <h1 class="text-xl font-bold tracking-wide">BAUMINAS <span class="text-blue-400">SmartBuy</span></h1>
+            <p class="text-xs text-slate-300">Unidade Luziânia - Suprimentos Inteligentes</p>
+        </div>
+        <div class="bg-blue-800 px-3 py-1 rounded text-xs font-semibold border border-blue-600">
+            Escuderia GP SENAI 2026
+        </div>
+    </header>
+
+    <!-- MENU DE NAVEGAÇÃO -->
+    <div class="bg-white p-2 border-b border-slate-200 flex justify-center space-x-2 md:space-x-4 shadow-sm">
+        <button onclick="switchTab('tela1')" id="btn-tela1" class="tab-btn bg-blue-600 text-white px-4 py-2 rounded-md font-medium text-sm transition-all shadow-sm cursor-pointer">
+            1. Painel do Comprador
+        </button>
+        <button onclick="switchTab('tela2')" id="btn-tela2" class="tab-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md font-medium text-sm transition-all cursor-pointer">
+            2. Portal do Fornecedor
+        </button>
+        <button onclick="switchTab('tela3')" id="btn-tela3" class="tab-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-md font-medium text-sm transition-all cursor-pointer">
+            3. Central de Decisão
+        </button>
+    </div>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-6">
+
+        <!-- ================= TELA 1: PAINEL DO COMPRADOR ================= -->
+        <div id="tela1" class="tab-content active bg-white p-6 rounded-xl shadow-md border border-slate-200">
+            
+            <!-- DASHBOARD DE KPIs -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl shadow-sm flex flex-col justify-center">
+                    <p class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-1">Tempo Médio de Resposta</p>
+                    <div class="flex items-baseline gap-2">
+                        <p class="text-2xl font-black text-blue-900">15 min</p>
+                        <span class="text-xs font-semibold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">↓ Caiu de 48h</span>
+                    </div>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl shadow-sm flex flex-col justify-center">
+                    <p class="text-xs text-emerald-600 font-bold uppercase tracking-wider mb-1">Saving (Economia no Mês)</p>
+                    <div class="flex items-baseline gap-2">
+                        <p class="text-2xl font-black text-emerald-900">R$ 14.200</p>
+                        <span class="text-[10px] text-emerald-700 font-medium">via cotação automatizada</span>
+                    </div>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl shadow-sm flex flex-col justify-center">
+                    <p class="text-xs text-slate-600 font-bold uppercase tracking-wider mb-1">Rastreabilidade de OPEX</p>
+                    <div class="flex items-baseline gap-2">
+                        <p class="text-2xl font-black text-slate-800">100%</p>
+                        <span class="text-[10px] text-slate-500 font-medium">Processos auditados</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-3">
+                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span class="p-1.5 bg-blue-100 text-blue-700 rounded-md text-xs">📋</span> 
+                    Nova Requisição de Compra Direta
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Formulário -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Insumo / Material Requerido</label>
+                        <select id="insumo" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <option value="Sulfato de Alumínio (Tratamento de Água)">Sulfato de Alumínio (Tratamento de Água)</option>
+                            <option value="Cloro Gasoso Liquefeito">Cloro Gasoso Liquefeito</option>
+                            <option value="Válvula de Esfera Flangeada 3''">Válvula de Esfera Flangeada 3''</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Quantidade</label>
+                            <input type="number" id="quantidade" value="500" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Prazo Limite</label>
+                            <input type="date" id="data-limite" value="2026-06-20" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase mb-2">Disparar Cotação para Fornecedores:</label>
+                        <div class="space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            <label class="flex items-center gap-2 text-sm text-slate-700">
+                                <input type="checkbox" checked class="rounded text-blue-600"> Química Norte Distribuidora (Simulado na Tela 2)
+                            </label>
+                            <label class="flex items-center gap-2 text-sm text-slate-700">
+                                <input type="checkbox" checked disabled class="rounded text-blue-600 bg-slate-200"> Insumos Goiás Ltda (Valor Fixo de Mercado)
+                            </label>
+                        </div>
+                    </div>
+
+                    <button onclick="dispararCotacao()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg text-sm transition-colors shadow-sm flex justify-center items-center gap-2 cursor-pointer">
+                        ⚡ Disparar Cotação via API Integrada
+                    </button>
+                </div>
+
+                <!-- Painel Informativo Lateral -->
+                <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-blue-900 text-sm mb-2">Engenharia de Custo Zero (Make/n8n)</h3>
+                        <p class="text-xs text-blue-800 leading-relaxed">
+                            Para não gerar custos de OPEX, a plataforma utiliza Webhooks conectados a ferramentas gratuitas de automação. Quando o comprador clica no botão, o link exclusivo é enviado para o WhatsApp do fornecedor, pulando taxas caras de softwares tradicionais.
+                        </p>
+                    </div>
+                    <div class="mt-4 p-3 bg-white rounded-lg border border-blue-200">
+                        <div class="flex justify-between items-center text-xs text-slate-500 mb-1">
+                            <span>Status da Integração WhatsApp:</span>
+                            <span class="text-green-600 font-semibold flex items-center gap-1">● Ativa</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 mt-1">Custo da operação: R$ 0,00 (Neutralidade Econômica Garantida).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TELA 2: PORTAL DO FORNECEDOR ================= -->
+        <div id="tela2" class="tab-content bg-white p-6 rounded-xl shadow-md border border-slate-200">
+            <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-3">
+                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span class="p-1.5 bg-amber-100 text-amber-700 rounded-md text-xs">🚀</span> 
+                    Portal Externo: Química Norte Distribuidora
+                </h2>
+                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Ambiente Externo</span>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6">
+                <p class="text-xs font-semibold text-slate-500 uppercase">Item Solicitado pela BAUMINAS Águas:</p>
+                <p id="forn-item-nome" class="text-base font-bold text-slate-800 mt-1">Sulfato de Alumínio (Tratamento de Água)</p>
+                <p class="text-xs text-slate-600 mt-1">Quantidade Solicitada: <span id="forn-item-qtd" class="font-bold text-slate-800">500</span> unidades</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <h3 class="text-sm font-bold text-slate-700">Preencha sua Proposta Comercial:</h3>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Preço Unitário (R$)</label>
+                            <input type="number" id="preco-unit" value="12.50" oninput="calcularTotal()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Prazo de Entrega (Dias)</label>
+                            <input type="number" id="prazo-entrega" value="3" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-amber-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Valor Total Proposto</label>
+                        <div class="w-full bg-slate-100 border border-slate-300 rounded-lg p-2.5 text-base font-bold text-slate-700" id="preco-total-display">
+                            R$ 6.250,00
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Anexar Proposta e Laudo Técnico (PDF)</label>
+                        <input type="file" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 cursor-pointer">
+                    </div>
+
+                    <button onclick="enviarProposta()" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-4 rounded-lg text-sm transition-colors shadow-sm cursor-pointer">
+                        Enviar Proposta Oficial
+                    </button>
+                </div>
+
+                <div class="bg-amber-50/50 p-5 rounded-xl border border-amber-100 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-amber-900 text-sm mb-2">Conformidade e Transparência</h3>
+                        <p class="text-xs text-amber-800 leading-relaxed mb-3">
+                            Este ambiente é blindado. Você não tem acesso aos valores enviados por concorrentes.
+                        </p>
+                        <div class="bg-white p-3 rounded-lg border border-amber-200">
+                            <p class="text-[11px] text-amber-900 font-semibold mb-1">Lembrete de Sustentabilidade:</p>
+                            <p class="text-[10px] text-amber-700">Para garantir sua nota ESG na BAUMINAS, anexe sempre o laudo de destinação correta de resíduos químicos junto à proposta comercial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TELA 3: CENTRAL DE DECISÃO ================= -->
+        <div id="tela3" class="tab-content bg-white p-6 rounded-xl shadow-md border border-slate-200">
+            <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-3">
+                <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span class="p-1.5 bg-green-100 text-green-700 rounded-md text-xs">📊</span> 
+                    Quadro Comparativo e Rastreabilidade (Ranking Inteligente)
+                </h2>
+                <span class="bg-green-100 text-green-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Análise Gerencial</span>
+            </div>
+
+            <div class="mb-4">
+                <p class="text-xs font-semibold text-slate-500 uppercase">Processamento para o Insumo:</p>
+                <p id="decisao-item-nome" class="text-base font-bold text-slate-800 mt-1">Sulfato de Alumínio (Tratamento de Água)</p>
+            </div>
+
+            <!-- Tabela Dinâmica que ordena por menor preço -->
+            <div class="overflow-x-auto rounded-lg border border-slate-200 mb-6 shadow-sm">
+                <table class="w-full text-sm text-left text-slate-500">
+                    <thead class="text-[11px] text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th class="px-4 py-3">Fornecedor</th>
+                            <th class="px-4 py-3">Conformidade ESG</th>
+                            <th class="px-4 py-3">Preço Unit.</th>
+                            <th class="px-4 py-3">Prazo</th>
+                            <th class="px-4 py-3">Valor Total</th>
+                            <th class="px-4 py-3">Decisão do Sistema</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-ranking" class="divide-y divide-slate-200 text-sm">
+                        <!-- Gerado dinamicamente via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-slate-900 text-slate-300 p-4 rounded-xl border border-slate-800 space-y-4 mb-6 shadow-inner">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Trilha de Auditoria (Logs do Sistema):</h3>
+                <div class="text-[11px] font-mono space-y-1">
+                    <p class="text-emerald-400">[2026-06-16 23:31:02] REQUISIÇÃO CRIADA PELO USUÁRIO: COMPRADOR_LUZIANIA</p>
+                    <p class="text-blue-400">[2026-06-16 23:31:05] WEBHOOK DISPARADO PELA API PARA WHATSAPP DOS FORNECEDORES</p>
+                    <p id="log-fornecedor" class="text-emerald-400">[2026-06-16 23:32:44] PROPOSTA RECEBIDA DIGITALMENTE: QUÍMICA NORTE (PDF ANEXADO)</p>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button onclick="aprovarCompra()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 px-6 rounded-lg text-sm transition-colors shadow-sm flex items-center gap-2 cursor-pointer">
+                    ✓ Homologar Pedido e Gerar Ordem de Compra
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- LOGICA JAVASCRIPT DO SIMULADOR INTEGRADO -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-blue-600', 'text-white', 'bg-amber-600', 'bg-green-600');
+                el.classList.add('bg-slate-200', 'text-slate-700');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            
+            let activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('bg-slate-200', 'text-slate-700');
+            if(tabId === 'tela1') activeBtn.classList.add('bg-blue-600', 'text-white');
+            if(tabId === 'tela2') activeBtn.classList.add('bg-amber-600', 'text-white');
+            if(tabId === 'tela3') activeBtn.classList.add('bg-green-600', 'text-white');
+        }
+
+        function calcularTotal() {
+            const qtd = parseFloat(document.getElementById('quantidade').value) || 0;
+            const unit = parseFloat(document.getElementById('preco-unit').value) || 0;
+            const total = qtd * unit;
+            
+            document.getElementById('preco-total-display').innerText = 'R$ ' + total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        }
+
+        function dispararCotacao() {
+            const insumoNome = document.getElementById('insumo').value;
+            const quantidade = document.getElementById('quantidade').value;
+            
+            document.getElementById('forn-item-nome').innerText = insumoNome;
+            document.getElementById('forn-item-qtd').innerText = quantidade;
+            document.getElementById('decisao-item-nome').innerText = insumoNome;
+            
+            calcularTotal();
+            alert('Sucesso! O Webhook disparou a cotação para o WhatsApp da Química Norte.\n\nIndo para o Portal do Fornecedor...');
+            switchTab('tela2');
+        }
+
+        function enviarProposta() {
+            atualizarTabelaDecisao();
+            alert('Proposta recebida, dados estruturados e salvos no banco de dados!\n\nRedirecionando para a Central de Auditoria para ver o cálculo do ranking.');
+            switchTab('tela3');
+        }
+
+        // FUNÇÃO QUE FAZ O CÁLCULO E ORGANIZAÇÃO REAL DO RANKING
+        function atualizarTabelaDecisao() {
+            const qtd = parseFloat(document.getElementById('quantidade').value) || 500;
+            const unitForn1 = parseFloat(document.getElementById('preco-unit').value) || 0;
+            const prazoForn1 = parseInt(document.getElementById('prazo-entrega').value) || 0;
+            const totalForn1 = qtd * unitForn1;
+
+            // Fornecedor 2 (Fixo de mercado para simular a concorrência)
+            const unitForn2 = 14.90;
+            const prazoForn2 = 5;
+            const totalForn2 = qtd * unitForn2;
+
+            // Criando a lista de competidores
+            let lista = [
+                { nome: "Química Norte Distribuidora", esg: "Nota A", unit: unitForn1, prazo: prazoForn1, total: totalForn1 },
+                { nome: "Insumos Goiás Ltda", esg: "Nota B", unit: unitForn2, prazo: prazoForn2, total: totalForn2 }
+            ];
+
+            // ORDENAÇÃO AUTOMÁTICA DA LISTA: Menor valor total vai para o topo!
+            lista.sort((a, b) => a.total - b.total);
+
+            let tbody = document.getElementById('tabela-ranking');
+            tbody.innerHTML = ""; // Limpa a tabela anterior
+
+            lista.forEach((f, index) => {
+                let isMelhor = (index === 0);
+                let rowClass = isMelhor ? "bg-emerald-50/60 font-medium text-slate-900" : "bg-white";
+                
+                let badgeMelhor = isMelhor ? '<span class="bg-emerald-200 text-emerald-800 text-[9px] px-1.5 py-0.5 rounded w-max font-bold">RECOMENDADO</span>' : '';
+                
+                let esgBadge = f.esg === "Nota A" 
+                    ? '<span class="flex items-center gap-1 text-emerald-700 font-bold text-xs"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Nota A</span>'
+                    : '<span class="flex items-center gap-1 text-amber-600 font-bold text-xs"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Nota B</span>';
+
+                let textoDecisao = "";
+                if (isMelhor) {
+                    textoDecisao = "Aprovado (Menor Custo)";
+                } else {
+                    let diferenca = f.total - lista[0].total;
+                    textoDecisao = `Recusado (+ R$ ${diferenca.toLocaleString('pt-BR', {minimumFractionDigits: 2})})`;
+                }
+
+                tbody.innerHTML += `
+                    <tr class="${rowClass}">
+                        <td class="px-4 py-3 flex flex-col gap-1">
+                            <span>${f.nome}</span>
+                            ${badgeMelhor}
+                        </td>
+                        <td class="px-4 py-3">${esgBadge}</td>
+                        <td class="px-4 py-3">R$ ${f.unit.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
+                        <td class="px-4 py-3">${f.prazo} dias</td>
+                        <td class="px-4 py-3 font-bold ${isMelhor ? 'text-emerald-700' : 'text-slate-700'}">R$ ${f.total.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
+                        <td class="px-4 py-3 text-xs ${isMelhor ? 'text-emerald-700 font-bold' : 'text-slate-400'}">${textoDecisao}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function aprovarCompra() {
+            alert('Pedido Homologado com Sucesso!\n\nOs indicadores ESG foram respeitados, o OPEX foi mantido neutro e a auditoria registrou toda a operação da Escuderia.');
+        }
+
+        // Executa uma vez no início para deixar a tabela populada
+        atualizarTabelaDecisao();
+    </script>
+</body>
+</html>
